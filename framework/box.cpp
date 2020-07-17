@@ -10,6 +10,12 @@ Box::Box(glm::vec3 min, glm::vec3 max) :
     max_{max}
 {}
 
+Box::Box(glm::vec3 min, glm::vec3 max, std::string name, Color rgb) :
+    min_{min},
+    max_{max},
+    Shape(name, rgb)
+{}
+
 float Box::volume() const {
     float h = (min_.x - max_.x) * -1;
     float w = (min_.y - max_.y) * -1;

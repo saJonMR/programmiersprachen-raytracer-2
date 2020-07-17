@@ -3,6 +3,8 @@
 #include "shape.hpp"
 #include "sphere.hpp"
 #include "box.hpp"
+#include "color.hpp"
+
 
 TEST_CASE("Box constructor, area and volume test", "[box]") {
   Box one{{0.0, 0.0, 0.0}, {0.0, 0.0, 0.0}};

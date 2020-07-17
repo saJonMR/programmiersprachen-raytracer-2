@@ -11,6 +11,12 @@ Sphere::Sphere(glm::vec3 center, float r) :
     radius_{r}
 {}
 
+Sphere::Sphere(glm::vec3 center, float r, std::string name, Color rgb) :
+    center_{center},
+    radius_{r},
+    Shape(name, rgb)
+{}
+
 float Sphere::volume() const {
     return((4.0 / 3.0) * M_PI * pow(radius_, 3));
 }
