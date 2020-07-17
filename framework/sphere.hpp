@@ -12,6 +12,8 @@ public:
     //~Sphere();
     /* virtual */ float volume() const override;
     /* virtual */ float area() const override;
+
+    /* virtual */ std::ostream& print(std::ostream& os) const override;
 private:
     glm::vec3 center_;
     float radius_;

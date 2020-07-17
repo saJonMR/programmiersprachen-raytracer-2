@@ -29,3 +29,9 @@ float Box::area() const {
     float l = (min_.z - max_.z) * -1;
     return(2 * (h * w) + 2 * (h * l) + 2 * (l * w));
 }
+
+std::ostream& Box::print(std::ostream& os) const {
+    Shape::print(os);
+    os << ", Min: {" << min_.x << ", " << min_.y << ", " << min_.z << "}, " << "Max: {" << max_.x << ", " << max_.y << ", " << max_.z << "}.";
+    return os;
+}

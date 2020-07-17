@@ -24,6 +24,17 @@ TEST_CASE("Sphere constructor, area and volume test", "[sphere]") {
   REQUIRE(two.volume() == Approx(179.59438));
 }
 
+TEST_CASE("print function test", "[sphere, box, shape]") {
+  Sphere one({1.0, 1.0, 1.0}, 2, "Hans", {1, 1, 1});
+  Box two{{0.0, 0.0, 0.0}, {1.0, 1.0, 1.0}, "Dieter", {1, 1, 1}};
+
+  std::cout << std::endl;
+  one.print(std::cout);
+  std::cout << std::endl;
+  two.print(std::cout);
+  std::cout << std::endl;
+}
+
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);
