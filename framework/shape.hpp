@@ -2,11 +2,13 @@
 #define SHAPE_HPP
 #include "color.hpp"
 #include <string>
+#include <iostream>
 
 class Shape {
 public:
     Shape();
     Shape(std::string name, Color rgb);
+    virtual ~Shape();
 
     virtual float area() const = 0;
     virtual float volume() const = 0;

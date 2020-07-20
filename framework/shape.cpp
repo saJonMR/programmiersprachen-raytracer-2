@@ -7,6 +7,10 @@ Shape::Shape(std::string name, Color rgb) :
     color_{rgb}
 {}
 
+Shape::~Shape() {
+    std::cout << "Shape deleted." << std::endl; 
+}
+
 std::ostream& Shape::print(std::ostream& os) const{
     os << "Name: \"" << name_ << "\", Color: (" << color_.r << ", " << color_.g << ", " << color_.b << ")";
     return os;

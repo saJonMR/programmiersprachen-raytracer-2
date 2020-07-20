@@ -16,6 +16,10 @@ Box::Box(glm::vec3 min, glm::vec3 max, std::string name, Color rgb) :
     Shape(name, rgb)
 {}
 
+Box::~Box() {
+    std::cout << "Box deleted." << std::endl;
+}
+
 float Box::volume() const {
     float h = (min_.x - max_.x) * -1;
     float w = (min_.y - max_.y) * -1;
@@ -32,6 +36,6 @@ float Box::area() const {
 
 std::ostream& Box::print(std::ostream& os) const {
     Shape::print(os);
-    os << ", Min: {" << min_.x << ", " << min_.y << ", " << min_.z << "}, " << "Max: {" << max_.x << ", " << max_.y << ", " << max_.z << "}.";
+    os << ", Min: {" << min_.x << ", " << min_.y << ", " << min_.z << "}, " << "Max: {" << max_.x << ", " << max_.y << ", " << max_.z << "}, " << "Area: " << this->area() << ", " << "Volume: " << this->volume() << std::endl;
     return os;
 }

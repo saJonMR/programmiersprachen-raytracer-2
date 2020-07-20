@@ -1,5 +1,9 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
+
+#include <glm/glm.hpp>
+#include <glm/gtx/intersect.hpp>
+
 #include "shape.hpp"
 #include "sphere.hpp"
 #include "box.hpp"
@@ -30,9 +34,53 @@ TEST_CASE("print function test", "[sphere, box, shape]") {
 
   std::cout << std::endl;
   one.print(std::cout);
-  std::cout << std::endl;
+
   two.print(std::cout);
+
+}
+
+TEST_CASE("intersect_ray_sphere", "[intersect]") {
+  // Ray
+  glm::vec3 ray_origin{0.0f, 0.0f, 0.0f};
+  // ray direction has to be normalized!
+  // you can use:
+  // v = glm::normalize (some_vector)
+  glm::vec3 ray_direction{0.0f, 0.0f, 1.0f};
+  // Sphere
+  glm::vec3 sphere_center{0.0f, 0.0f, 5.0f};
+  float sphere_radius{1.0f};
+  float distance = 0.0f;
+  auto result = glm::intersectRaySphere(
+    ray_origin, ray_direction,
+    sphere_center,
+    sphere_radius * sphere_radius, // squared radius !!!
+    distance);
+  REQUIRE(distance == Approx(4.0f));
+}
+
+TEST_CASE("static vs dynamic", "[sphere, shape]") {
+  Color red{255, 0, 0};
+  glm::vec3 position {0.0f, 0.0f, 0.0f};
+  std::shared_ptr<Sphere> s1 = std::make_shared<Sphere>(position, 1.2f, "sphere0", red);
+  std::shared_ptr<Shape> s2 = std::make_shared<Sphere>(position, 1.2f, "sphere1", red);
+  
   std::cout << std::endl;
+  s1->print(std::cout);
+  s2->print(std::cout);
+}
+
+TEST_CASE("virtual Shape destructor", "[Shape]") {
+  Color red{255, 0, 0};
+  glm::vec3 position{0.0f, 0.0f, 0.0f};
+  Sphere* s1 = new Sphere{position, 1.2f, "Sphere0", red};
+  Shape* s2 = new Sphere{position, 1.2f, "Sphere1", red};
+
+  std::cout << std::endl;
+  s1->print(std::cout);
+  s2->print(std::cout);
+
+  delete s1;
+  delete s2;
 }
 
 int main(int argc, char *argv[])
